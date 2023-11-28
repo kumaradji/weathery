@@ -1,34 +1,27 @@
 // HomePage.jsx
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useWeatherApi } from './weatherApiHook';
 import WeatherDisplay from './WeatherDisplay';
-import { fetchData } from '../api';
 
-const HomePage = () => {
-  const [city, setCity] = useState('London');
-  const [weatherData, setWeatherData] = useState(null);
-
-  useEffect(() => {
-    const fetchDataForCity = async () => {
-      try {
-        const data = await fetchData(city);
-        setWeatherData(data);
-      } catch (error) {
-        console.error('Error fetching weather data:', error);
-        setWeatherData(null);
-      }
-    };
-
-    fetchDataForCity();
-  }, [city]);
+function Search() {
+  const [city, setCity] = React.useState('');
+  const { data, error } = useWeatherApi(city);
 
   return (
-
     <div>
-      <button onClick={() => setCity('New York')}>Change City to New York</button>
-      <WeatherDisplay weatherData={weatherData} city={city} />
+      <input
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        placeholder="Enter city name"
+      />
+
+      {error && <div>Error fetching weather data: {error.message}</div>}
+
+      <WeatherDisplay weatherData={data} city={city} />
     </div>
   );
-};
+}
 
-export default HomePage;
+export default Search;
+

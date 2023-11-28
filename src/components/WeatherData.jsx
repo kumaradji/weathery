@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { fetchData } from '../api';
+import Loader from "./Loader";
 
 class WeatherData extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class WeatherData extends Component {
     const { weatherData, error } = this.state;
 
     if (!weatherData) {
-      return <div>Loading...</div>;
+      return <Loader />
     }
 
     return this.props.render({ weatherData });

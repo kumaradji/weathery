@@ -21,11 +21,11 @@ const WeatherDisplay = ({ weatherData, city }) => {
   const temperatureFahrenheit = (temperatureKelvin - 273.15) * 9/5 + 32;
 
   return (
-    <div>
+    <>
       <h2>Current Weather in {city}</h2>
       {icon}
       <p>Temperature: {temperatureCelsius.toFixed(2)} °C / {temperatureFahrenheit.toFixed(2)} °F</p>
-    </div>
+    </>
   );
 };
 
