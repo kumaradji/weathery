@@ -1,7 +1,7 @@
 // WeatherData.jsx
 
 import React, { Component } from 'react';
-import { fetchData } from '../api'; // Импортируйте fetchData из нового модуля
+import { fetchData } from '../api';
 
 class WeatherData extends Component {
   constructor(props) {
