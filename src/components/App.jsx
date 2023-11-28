@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import Search from './Search';
 import WeatherData from './WeatherData';
 import WeatherDisplay from './WeatherDisplay';
+import HomePage from './HomePage'; // Импортируйте компонент HomePage
 
-const App = () => {
+function App() {
   const [city, setCity] = useState('');
 
   const handleSearch = (newCity) => {
@@ -13,12 +14,15 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Weather App</h1>
-      <Search onSearch={handleSearch} />
-      <WeatherData city={city} render={(data) => <WeatherDisplay weatherData={data} />} />
+    <div className="App">
+      <header className="App-header">
+        <h1>Weather App</h1>
+        <Search onSearch={handleSearch} />
+        <WeatherData city={city} render={(data) => <WeatherDisplay weatherData={data} />} />
+        <HomePage />
+      </header>
     </div>
   );
-};
+}
 
 export default App;

@@ -2,9 +2,9 @@
 
 import React from 'react';
 
-const WeatherDisplay = ({ weatherData }) => {
+const WeatherDisplay = ({ weatherData, city }) => {
   if (!weatherData || !weatherData.cod || weatherData.cod !== '200' || !weatherData.list || weatherData.list.length === 0) {
-    return <div>Error: Unable to display weather data. Data: {JSON.stringify(weatherData)}</div>;
+    return <div>Error: Unable to display weather data for {city}.</div>;
   }
 
   const weatherList = weatherData.list;
@@ -19,7 +19,7 @@ const WeatherDisplay = ({ weatherData }) => {
 
   return (
     <div>
-      <h2>Current Weather</h2>
+      <h2>Current Weather in {city}</h2>
       <p>Temperature: {temperatureCelsius.toFixed(2)} °C / {temperatureFahrenheit.toFixed(2)} °F</p>
     </div>
   );
