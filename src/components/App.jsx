@@ -21,7 +21,7 @@ function App() {
             async (position) => {
               const { latitude, longitude } = position.coords;
 
-              const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=YOUR_API_KEY`;
+              const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=ffd35bef4b2502a86a950620325c3764`;
 
               const response = await fetch(url);
               const data = await response.json();

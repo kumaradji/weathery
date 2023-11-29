@@ -21,10 +21,10 @@ const Search = ({ onSearch, suggestedCities }) => {
   return (
     <div>
       <input type="text" value={city} onChange={handleInputChange} placeholder="Enter city" />
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch}>Найти</button>
 
       <div>
-        <p>Suggested cities: </p>
+        <p>Введите город или выберете из списка: </p>
         {suggestedCities.map((suggestedCity) => (
           <span key={suggestedCity} onClick={() => handleSuggestionClick(suggestedCity)}>
             {suggestedCity}

@@ -11,8 +11,7 @@ function HomePage() {
 
   return (
     <div>
-      {/* Передаем onSearch в компонент Search */}
-      <Search onSearch={setCity} suggestedCities={['New York', 'London', 'Tokyo']} />
+      <Search onSearch={setCity} suggestedCities={['Oslo ', 'London ', 'Tokyo ', 'Москва']} />
 
       {error && <div>Error fetching weather data: {error.message}</div>}
 

@@ -15,11 +15,11 @@ const WeatherDisplay = ({ weatherData, city }) => {
   const temperatureCelsius = temperatureKelvin - 273.15;
   const temperatureFahrenheit = (temperatureKelvin - 273.15) * 9/5 + 32;
 
-  const displayCity = city || 'Геолокация';
+  const displayCity = city || 'этом месте';
 
   return (
     <>
-      <h2>Текущая погода в городе {displayCity}</h2>
+      <h2>Текущая погода в {displayCity}</h2>
       {icon}
       <p>Температура: {temperatureCelsius.toFixed(2)} °C / {temperatureFahrenheit.toFixed(2)} °F</p>
     </>
