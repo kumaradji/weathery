@@ -6,13 +6,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   target: 'web',  // Эта опция говорит Webpack собирать бандл для выполнения в браузере, а не в Node.js.
-
   entry: path.resolve(__dirname, 'src', 'index.js'),
   output: {
+    filename: 'main.js',
     path: path.resolve(__dirname, 'build'),
-    filename: "[name].js",
     clean: true,
   },
+
   module: {
     rules: [
       {

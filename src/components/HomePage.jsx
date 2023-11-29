@@ -17,6 +17,8 @@ function HomePage() {
       {error && <div>Error fetching weather data: {error.message}</div>}
 
       <WeatherDisplay weatherData={data} city={city} />
+
+
     </>
   );
 }

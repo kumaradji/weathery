@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-const Search = ({ onSearch, suggestedCities }) => {
+const Search = ({ onSearch, suggestedCities, onCurrentLocationClick }) => {
   const [city, setCity] = useState('');
 
   const handleInputChange = (e) => {
@@ -11,6 +11,7 @@ const Search = ({ onSearch, suggestedCities }) => {
 
   const handleSearch = () => {
     onSearch(city);
+    setCity(''); // Сброс поля ввода после поиска
   };
 
   const handleSuggestionClick = (suggestedCity) => {
@@ -20,7 +21,7 @@ const Search = ({ onSearch, suggestedCities }) => {
 
   return (
     <div>
-      <input type="text" value={city} onChange={handleInputChange} placeholder="Введите город" />
+      <input type="text" value={city} onChange={handleInputChange} placeholder="Enter city" />
       <button onClick={handleSearch}>Найти</button>
 
       <div>
@@ -31,6 +32,7 @@ const Search = ({ onSearch, suggestedCities }) => {
           </span>
         ))}
       </div>
+      <button onClick={onCurrentLocationClick}>Текущее местоположение</button>
     </div>
   );
 };
