@@ -9,9 +9,9 @@ module.exports = merge(common, {
   devServer: {
     port: 9000,
     open: true,
-    contentBase: path.join(__dirname, 'build'),
-    publicPath: '/',
-    https: true,
+    static: {
+      directory: path.join(__dirname, 'build'),
+    },
   },
   devtool: 'inline-source-map',
 });

@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import WeatherData from './WeatherData';
 import WeatherDisplay from './WeatherDisplay';
 import HomePage from './HomePage';
-import Search from './Search'; // Импортируем компонент Search
 import "../styles/Header.css";
 import Header from "./Header";
 
@@ -14,13 +13,6 @@ function App() {
 
   const handleSearch = (newCity) => {
     setCity(newCity);
-  };
-
-  const handleCurrentLocationClick = () => {
-    console.log('Attempting to obtain current location...');
-    // Добавьте здесь код для запроса текущего местоположения
-    // и обновления состояния currentLocationWeather
-    // console.log('Successfully obtained current location.');
   };
 
   useEffect(() => {
@@ -62,11 +54,7 @@ function App() {
           city={city}
           render={(data) => <WeatherDisplay weatherData={data || currentLocationWeather} city={city} />}
         />
-        <Search
-          onSearch={handleSearch}
-          suggestedCities={['Oslo', 'London', 'Tokyo', 'Москва']}
-          onCurrentLocationClick={handleCurrentLocationClick} // Передаем обработчик для текущего местоположения
-        />
+
         <HomePage onSearch={handleSearch} />
       </main>
     </>
