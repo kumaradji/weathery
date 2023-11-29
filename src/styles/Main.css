@@ -1,0 +1,36 @@
+/* styles/Main.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #dfdfe8;
+    margin: 20px;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    display: grid;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        max-width: 1000px;
+        display: grid;
+        margin: 0 auto;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 480px;
+    }
+}

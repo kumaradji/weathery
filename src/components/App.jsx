@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import WeatherData from './WeatherData';
 import WeatherDisplay from './WeatherDisplay';
 import HomePage from './HomePage';
+import "../styles/Header.css";
+import Header from "./Header";
 
 function App() {
   const [city, setCity] = useState('');
@@ -43,16 +45,17 @@ function App() {
   }, [city]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Погода в городе</h1>
+    <>
+      <Header />
+
+      <main className="container">
         <WeatherData
           city={city}
           render={(data) => <WeatherDisplay weatherData={data || currentLocationWeather} city={city} />}
         />
         <HomePage onSearch={handleSearch} />
-      </header>
-    </div>
+      </main>
+    </>
   );
 }
 

@@ -20,7 +20,7 @@ const Search = ({ onSearch, suggestedCities }) => {
 
   return (
     <div>
-      <input type="text" value={city} onChange={handleInputChange} placeholder="Enter city" />
+      <input type="text" value={city} onChange={handleInputChange} placeholder="Введите город" />
       <button onClick={handleSearch}>Найти</button>
 
       <div>
