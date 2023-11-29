@@ -54,7 +54,6 @@ function App() {
           city={city}
           render={(data) => <WeatherDisplay weatherData={data || currentLocationWeather} city={city} />}
         />
-
         <HomePage onSearch={handleSearch} />
       </main>
     </>
