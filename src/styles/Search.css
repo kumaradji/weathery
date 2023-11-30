@@ -1,0 +1,22 @@
+.search-container {
+    margin-top: 10px;
+}
+
+.custom-button {
+    border-radius: 5px;
+    background-color: #3581d8;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+}
+
+.custom-button:hover {
+    background-color: #357bc5;
+}
+
+.custom-button-group {
+    display: flex;
+    gap: 5px;
+}

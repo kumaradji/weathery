@@ -1,6 +1,6 @@
 // WeatherData.jsx
 
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { fetchData } from '../api';
 
 class WeatherData extends Component {
@@ -34,10 +34,6 @@ class WeatherData extends Component {
 
   render() {
     const { weatherData, error } = this.state;
-
-    if (!weatherData) {
-      return "Loading..."
-    }
 
     return this.props.render({ weatherData });
   }

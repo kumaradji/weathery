@@ -15,7 +15,13 @@ function HomePage() {
   };
 
   return (
-    <div>
+    <>
+      <input
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        placeholder="Введите город"
+      />
+
       <Search
         onSearch={handleSearch}
         suggestedCities={['Москва', 'Oslo', 'London', 'Tokyo', 'Томск']}
@@ -23,16 +29,10 @@ function HomePage() {
         showPlaceholder={true}
       />
 
-      <input
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        placeholder="Введите город"
-      />
-
       {error && <div>Error fetching weather data: {error.message}</div>}
 
       <WeatherDisplay weatherData={data} city={city} />
-    </div>
+    </>
   );
 }
 
