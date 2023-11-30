@@ -19,12 +19,12 @@ function HomePage() {
       <input
         value={city}
         onChange={(e) => setCity(e.target.value)}
-        placeholder="Введите город"
+        placeholder="Введите город или выберете из списка"
       />
 
       <Search
         onSearch={handleSearch}
-        suggestedCities={['Москва', 'Oslo', 'London', 'Tokyo', 'Томск']}
+        suggestedCities={['Москва', 'Сочи', 'Bern', 'Oslo', 'London', 'Tokyo', 'Томск']}
         onSelectCity={setCity}
         showPlaceholder={true}
       />

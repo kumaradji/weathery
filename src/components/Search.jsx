@@ -16,7 +16,7 @@ const Search = ({onSearch, suggestedCities, onSelectCity, showPlaceholder}) => {
   };
 
   const handleEmptyAreaClick = (e) => {
-    if (!containerRef.current.contains(e.target)) {
+    if (!containerRef.current.contains(e.target) && e.target.tagName !== "INPUT") {
       window.location.reload();
     }
   };
@@ -35,7 +35,7 @@ const Search = ({onSearch, suggestedCities, onSelectCity, showPlaceholder}) => {
         <div ref={containerRef} className="d-flex gap-2">
           {showPlaceholder && (
             <div className="custom-button-group">
-              {suggestedCities.map((suggestedCity, index) => (
+              {suggestedCities.map((suggestedCity) => (
                 <button
                   key={suggestedCity}
                   type="button"
