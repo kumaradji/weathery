@@ -1,0 +1,29 @@
+/* WeatherDisplay.css */
+
+.weather-display {
+    text-align: center;
+    font-family: 'Rubik Marker Hatch', monospace;
+    font-size: larger;
+    margin-top: 20px;
+}
+
+.weather-icon {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.weather-info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.temperature-info,
+.pressure-info {
+    flex-basis: 40%;
+}
+
+.weather-info p {
+    margin: 5px 0;
+}
+

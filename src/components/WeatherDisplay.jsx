@@ -1,6 +1,7 @@
 // WeatherDisplay.jsx
 
 import React from 'react';
+import "../styles/WeatherDisplay.css";
 
 const WeatherDisplay = ({ weatherData, city }) => {
   if (!weatherData || weatherData.cod !== '200' || !weatherData.list || weatherData.list.length === 0) {
@@ -11,24 +12,34 @@ const WeatherDisplay = ({ weatherData, city }) => {
   const iconCode = currentWeather.weather[0].icon;
   const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
   const temperatureKelvin = currentWeather.main.temp;
+  const pressure = currentWeather.main.pressure;
+  const windSpeed = currentWeather.wind.speed;
 
   const temperatureCelsius = temperatureKelvin - 273.15;
 
-  const windSpeed = currentWeather.wind.speed;
-
-  const pressureHpa = currentWeather.main.pressure;
-  const pressureMmHg = (pressureHpa * 0.75006).toFixed(2);
+  const pressureMmHg = (pressure * 0.750061561303).toFixed(2); // Конвертируем в мм рт. ст.
 
   const displayCity = city || 'этом месте';
 
   return (
-    <>
+    <div className="weather-display">
       <h2>Текущая погода в городе {displayCity}</h2>
-      <img src={iconUrl} alt="Weather Icon" />
-      <p>Температура: {temperatureCelsius.toFixed(1)} °C </p>
-      <p>Давление: {pressureMmHg} мм рт. ст.</p>
+      <img className="weather-icon" src={iconUrl} alt="Weather Icon" />
+
+      <div className="weather-info">
+        <div className="temperature-info">
+          <p>Температура:</p>
+          <p>{temperatureCelsius.toFixed(1)} °C</p>
+        </div>
+
+        <div className="pressure-info">
+          <p>Давление:</p>
+          <p>{pressureMmHg} мм рт. ст.</p>
+        </div>
+      </div>
+
       <p>Скорость ветра: {windSpeed} м/с</p>
-    </>
+    </div>
   );
 };
 
