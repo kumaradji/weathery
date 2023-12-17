@@ -6,58 +6,51 @@ import WeatherDisplay from './WeatherDisplay';
 import HomePage from './HomePage';
 import "../styles/Header.css";
 import Header from "./Header";
+import useGeoLocation from './useGeoLocation';
 import process from 'process';
 
-const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
+// const apiKey = 'ffd35bef4b2502a86a950620325c3764';
 
 function App() {
   const [city, setCity] = useState('');
   const [currentLocationWeather, setCurrentLocationWeather] = useState(null);
 
+  const location = useGeoLocation();
+
   const handleSearch = (newCity) => {
     setCity(newCity);
   };
 
-  useEffect(() => {
-    if (!city) {
-      const fetchCurrentLocationWeather = async () => {
-        try {
-          navigator.geolocation.getCurrentPosition(
-            async (position) => {
-              const { latitude, longitude } = position.coords;
-              const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
-
-              const response = await fetch(url);
-              const data = await response.json();
-              setCurrentLocationWeather(data);
-              console.log('Successfully obtained current location.');
-            },
-            (error) => {
-              console.error('Error getting current location:', error);
-              setCurrentLocationWeather(null);
-            }
-          );
-        } catch (error) {
-          console.error('Error fetching current location weather:', error);
-          setCurrentLocationWeather(null);
-        }
-      };
-
-      fetchCurrentLocationWeather();
-    }
-  }, [city]);
+  // useEffect(() => {
+  //   if (!city && location.loaded && !location.error) {
+  //     const fetchCurrentLocationWeather = async () => {
+  //       try {
+  //         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${location.coords.lat}&lon=${location.coords.lng}&appid=${apiKey}`;
+  //         console.log('Request URL:', url); // Добавлено для отладки
+  //         const response = await fetch(url);
+  //         const data = await response.json();
+  //         setCurrentLocationWeather(data);
+  //         console.log('Successfully obtained current location weather:', data); // Добавлено для отладки
+  //       } catch (error) {
+  //         console.error('Error fetching current location weather:', error);
+  //         setCurrentLocationWeather(null);
+  //       }
+  //     };
+  //
+  //
+  //     fetchCurrentLocationWeather();
+  //   }
+  // }, [city, location]);
 
   return (
     <>
       <Header />
 
       <main className="container">
-        <WeatherData
-          city={city}
-          render={(data) => <WeatherDisplay weatherData={data || currentLocationWeather} city={city} />}
-        />
-        <HomePage onSearch={handleSearch} />
 
+        <WeatherDisplay />
+
+        <HomePage onSearch={handleSearch} />
       </main>
     </>
   );

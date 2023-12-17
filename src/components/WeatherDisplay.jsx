@@ -1,6 +1,7 @@
 // WeatherDisplay.jsx
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import GeoWeatherLoader from './GeoWeatherLoader';
 import "../styles/WeatherDisplay.css";
 
 const WeatherDisplay = ({ weatherData, city }) => {
@@ -17,7 +18,7 @@ const WeatherDisplay = ({ weatherData, city }) => {
 
   const temperatureCelsius = temperatureKelvin - 273.15;
 
-  const pressureMmHg = (pressure * 0.750061561303).toFixed(2); // Конвертируем в мм рт. ст.
+  const pressureMmHg = (pressure * 0.750061561303).toFixed(2);
 
   const displayCity = city || 'этом месте';
 
@@ -28,17 +29,17 @@ const WeatherDisplay = ({ weatherData, city }) => {
 
       <div className="weather-info">
         <div className="temperature-info">
-          <p>Температура:</p>
-          <p>{temperatureCelsius.toFixed(1)} °C</p>
+          <p>Температура: {temperatureCelsius.toFixed(1)} °C</p>
         </div>
 
         <div className="pressure-info">
-          <p>Давление:</p>
-          <p>{pressureMmHg} мм рт. ст.</p>
+          <p>Давление: {pressureMmHg} мм рт. ст.</p>
+        </div>
+
+        <div className="wind-info">
+          <p>Скорость ветра: {windSpeed} м/с</p>
         </div>
       </div>
-
-      <p>Скорость ветра: {windSpeed} м/с</p>
     </div>
   );
 };
