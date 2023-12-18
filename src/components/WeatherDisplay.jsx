@@ -1,9 +1,13 @@
 // WeatherDisplay.jsx
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import "../styles/WeatherDisplay.css";
 
 const WeatherDisplay = ({ weatherData, city }) => {
+  useEffect(() => {
+    console.log('WeatherData in WeatherDisplay:', weatherData);
+  }, [weatherData]);
+
   if (!weatherData || weatherData.cod !== '200' || !weatherData.list || weatherData.list.length === 0) {
     return null;
   }
@@ -20,7 +24,6 @@ const WeatherDisplay = ({ weatherData, city }) => {
   const displayCity = city || 'этом месте';
 
   return (
-
     <div className="weather-display">
       <h2>Текущая погода в городе {displayCity}</h2>
       <img className="weather-icon" src={iconUrl} alt="Weather Icon" />
@@ -37,7 +40,6 @@ const WeatherDisplay = ({ weatherData, city }) => {
         <div className="wind-info">
           <p>Скорость ветра: {windSpeed} м/с</p>
         </div>
-
       </div>
     </div>
   );

@@ -6,16 +6,22 @@ const Search = ({ onSearch, suggestedCities, onSelectCity, showPlaceholder }) =>
   const containerRef = useRef(null);
 
   const handleSuggestionClick = (suggestedCity) => {
+    // Вызываем onSelectCity, чтобы обработать выбор города
     if (onSelectCity) {
       onSelectCity(suggestedCity);
     }
+
+    // Вызываем onSearch, чтобы обработать поиск (если необходимо)
     if (onSearch) {
       onSearch(suggestedCity);
     }
+
+    // Очищаем поле ввода после выбора города
     setSearchedCity('');
   };
 
   const handleEmptyAreaClick = (e) => {
+    // Перезагружаем страницу, если пользователь кликнул вне области поиска
     if (!containerRef.current.contains(e.target) && e.target.tagName !== "INPUT") {
       window.location.reload();
     }

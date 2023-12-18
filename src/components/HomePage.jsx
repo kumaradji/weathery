@@ -1,5 +1,3 @@
-// HomePage.jsx
-
 import React, { useState } from 'react';
 import { useWeatherApi } from './weatherApiHook';
 import WeatherDisplay from './WeatherDisplay';
@@ -8,10 +6,14 @@ import "../styles/Main.css";
 import GeoWeatherLoader from "./GeoWeatherLoader";
 import CurrentLocationWeather from "./CurrentLocationWeather";
 
-
 function HomePage() {
   const [city, setCity] = useState('');
   const { data, error } = useWeatherApi(city);
+  const [loading, setLoading] = useState(false); // Добавьте эту строку
+
+  console.log('City in HomePage:', city);
+  console.log('Data in HomePage:', data);
+  console.log('Error in HomePage:', error);
 
   const handleSearch = (searchCity) => {
     setCity(searchCity);
@@ -32,11 +34,11 @@ function HomePage() {
         showPlaceholder={true}
       />
 
+      {loading && <p>Loading...</p>} {/* Убедитесь, что эта строка используется правильно и не вызывает ошибку */}
+
       {error && <div>Error fetching weather data: {error.message}</div>}
 
       <WeatherDisplay weatherData={data} city={city} />
-
-      <GeoWeatherLoader />
 
       <CurrentLocationWeather />
     </>
