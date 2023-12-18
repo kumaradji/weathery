@@ -48,5 +48,7 @@ export default function useGeoLocation() {
     getGeoLocation();
   }, []);
 
+  console.log('Location:', location); // Добавим вывод в консоль
+
   return location;
 }

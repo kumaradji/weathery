@@ -5,6 +5,9 @@ import { useWeatherApi } from './weatherApiHook';
 import WeatherDisplay from './WeatherDisplay';
 import Search from './Search';
 import "../styles/Main.css";
+import GeoWeatherLoader from "./GeoWeatherLoader";
+import CurrentLocationWeather from "./CurrentLocationWeather";
+
 
 function HomePage() {
   const [city, setCity] = useState('');
@@ -32,6 +35,10 @@ function HomePage() {
       {error && <div>Error fetching weather data: {error.message}</div>}
 
       <WeatherDisplay weatherData={data} city={city} />
+
+      <GeoWeatherLoader />
+
+      <CurrentLocationWeather />
     </>
   );
 }

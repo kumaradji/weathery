@@ -1,8 +1,8 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import "../styles/Search.css";
 
-const Search = ({onSearch, suggestedCities, onSelectCity, showPlaceholder}) => {
-  const [city, setCity] = useState('');
+const Search = ({ onSearch, suggestedCities, onSelectCity, showPlaceholder }) => {
+  const [searchedCity, setSearchedCity] = useState('');
   const containerRef = useRef(null);
 
   const handleSuggestionClick = (suggestedCity) => {
@@ -12,7 +12,7 @@ const Search = ({onSearch, suggestedCities, onSelectCity, showPlaceholder}) => {
     if (onSearch) {
       onSearch(suggestedCity);
     }
-    setCity('');
+    setSearchedCity('');
   };
 
   const handleEmptyAreaClick = (e) => {
