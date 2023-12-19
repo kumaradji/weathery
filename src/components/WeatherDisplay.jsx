@@ -3,8 +3,6 @@ import "../styles/WeatherDisplay.css";
 
 const WeatherDisplay = ({ weatherData, city, geoData }) => {
   useEffect(() => {
-    console.log('WeatherData in WeatherDisplay:', JSON.stringify(weatherData, null, 2));
-    console.log('GeoData in WeatherDisplay:', JSON.stringify(geoData, null, 2));
   }, [weatherData, geoData]);
 
   if (!weatherData || weatherData.cod !== '200' || !weatherData.list || weatherData.list.length === 0) {
@@ -20,7 +18,7 @@ const WeatherDisplay = ({ weatherData, city, geoData }) => {
   const temperatureCelsius = (temperatureKelvin - 273.15).toFixed(1);
   const pressureMmHg = (pressure * 0.750061561303).toFixed(2);
 
-  // Используйте значение по умолчанию, если не удалось получить город
+
   const displayCity = city || (geoData && geoData.cityName) || 'этом месте';
 
   return (

@@ -24,9 +24,13 @@ function HomePage() {
     setLoadingGeo(!geoLoaded);
   }, [geoLoaded]);
 
+  // Добавим состояния для управления данными и загрузкой
+  const [weatherData, setWeatherData] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const handleWeatherLoaded = (weatherData) => {
     // Обновляем данные о погоде при загрузке
-    setData(weatherData);
+    setWeatherData(weatherData);
     setLoading(false); // Устанавливаем loading в false после загрузки данных о погоде
   };
 
@@ -49,24 +53,18 @@ function HomePage() {
         showPlaceholder={true}
       />
 
-      {/* Добавляем блок, который будет показываться при загрузке геолокации */}
-      {loadingGeo && <p>Loading GeoLocation...</p>}
+      <WeatherDisplay
+        weatherData={weatherData}
+        city={city}
+        geoData={{ cityName: city }}
+      />
 
-      {!geoLoaded ? (
-        // Добавляем блок, который будет показываться, если геолокация не загружена
-        <p>GeoLocation not loaded</p>
+
+      {/* Проверьте, что geoCoords передаются в WeatherDisplay как geoData */}
+      {data ? (
+        <WeatherDisplay weatherData={data} city={city} geoData={geoCoords} />
       ) : (
-        <>
-          {/* Добавляем блок, который будет показываться, если город не выбран и геолокация доступна */}
-          {!city && <GeoWeatherLoader coords={geoCoords} onWeatherLoaded={handleWeatherLoaded} />}
-          {data ? (
-            <WeatherDisplay weatherData={data} city={city} geoData={geoCoords} />
-          ) : (
-            <p>No weather data available</p>
-          )}
-          {error && <div>Error fetching weather data: {error.message}</div>}
-          <CurrentLocationWeather />
-        </>
+        <p>No weather data available</p>
       )}
 
       {/* Выводим информацию о геолокации с использованием нового компонента */}

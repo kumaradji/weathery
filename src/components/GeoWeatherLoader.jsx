@@ -1,5 +1,5 @@
+// GeoWeatherLoader.jsx
 import { useEffect } from 'react';
-import useGeoLocation from './useGeoLocation';
 
 const apiKey = 'ffd35bef4b2502a86a950620325c3764';
 
