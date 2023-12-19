@@ -4,19 +4,13 @@ import WeatherDisplay from './WeatherDisplay';
 import Search from './Search';
 import "../styles/Main.css";
 import GeoLocationInfo from './GeoLocationInfo';
-import useGeoLocation from './useGeoLocation'; // Импортируем хук useGeoLocation
+import useGeoLocation from './useGeoLocation';
 
 function HomePage() {
   const [city, setCity] = useState('');
   const { data, error } = useWeatherApi(city);
   const { loaded: geoLoaded, coords: geoCoords } = useGeoLocation();
   const [loadingGeo, setLoadingGeo] = useState(false);
-
-  console.log('City in HomePage:', city);
-  console.log('Data in HomePage:', data);
-  console.log('Error in HomePage:', error);
-  console.log('Location in HomePage:', geoCoords);
-  console.log('Loading in HomePage:', loadingGeo);
 
   useEffect(() => {
     setLoadingGeo(!geoLoaded);
@@ -27,7 +21,6 @@ function HomePage() {
   const [loading, setLoading] = useState(false);
 
   const handleWeatherLoaded = (weatherData) => {
-    // Обновляем данные о погоде при загрузке
     setWeatherData(weatherData);
     setLoading(false); // Устанавливаем loading в false после загрузки данных о погоде
   };

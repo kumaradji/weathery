@@ -1,8 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import WeatherDisplay from './WeatherDisplay';
+import React, {useState, useEffect} from 'react';
+import {
+  getIconUrl,
+  getTemperatureC,
+  getPressure,
+  getWindSpeed
+} from '../utils/weatherUtils';
 
-const GeoLocationInfo = ({ loaded, coords }) => {
+const GeoLocationInfo = ({loaded, coords}) => {
   const [weatherData, setWeatherData] = useState(null);
+  const iconUrl = getIconUrl(weatherData);
+  const tempC = getTemperatureC(weatherData);
+  const pressureMmHg = getPressure(weatherData);
+  const windSpeed = getWindSpeed(weatherData);
 
   useEffect(() => {
     const fetchWeatherData = async () => {
@@ -24,24 +33,29 @@ const GeoLocationInfo = ({ loaded, coords }) => {
     }
   }, [loaded, coords]);
 
+  if (!weatherData || weatherData.cod !== 200) {
+    return null;
+  }
+
   return (
-    <div>
-      <h2>Geo Location Info</h2>
-
-      {loaded && coords && weatherData && (
-        <div>
-          <p>Широта: {coords.lat}</p>
-          <p>Долгота: {coords.lng}</p>
-
-          <p>Температура: {weatherData.main.temp} °C</p>
-          <img
-            src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
-            alt={weatherData.weather[0].description}
-          />
-          <p>Погода: {weatherData.weather[0].description}</p>
+    <div className="weather-display">
+      <h2>Погода в вашем местоположении</h2>
+      <img className="weather-icon" src={iconUrl}/>
+      <div className="weather-info">
+        <div className="temperature-info">
+          <p>Температура: {tempC} °C</p>
         </div>
-      )}
+
+        <div className="pressure-info">
+          <p>Давление: {pressureMmHg} мм рт. ст.</p>
+        </div>
+
+        <div className="wind-info">
+          <p>Скорость ветра: {windSpeed} м/с</p>
+        </div>
+      </div>
     </div>
+
   );
 };
 
