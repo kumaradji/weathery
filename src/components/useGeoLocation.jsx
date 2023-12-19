@@ -18,7 +18,7 @@ export default function useGeoLocation() {
 
   const onError = (error) => {
     setLocation({
-      loaded: true,
+      loaded: false,
       error,
     });
   };

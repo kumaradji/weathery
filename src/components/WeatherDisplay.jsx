@@ -1,12 +1,11 @@
-// WeatherDisplay.jsx
-
 import React, { useEffect } from 'react';
 import "../styles/WeatherDisplay.css";
 
-const WeatherDisplay = ({ weatherData, city }) => {
+const WeatherDisplay = ({ weatherData, city, geoData }) => {
   useEffect(() => {
-    console.log('WeatherData in WeatherDisplay:', weatherData);
-  }, [weatherData]);
+    console.log('WeatherData in WeatherDisplay:', JSON.stringify(weatherData, null, 2));
+    console.log('GeoData in WeatherDisplay:', JSON.stringify(geoData, null, 2));
+  }, [weatherData, geoData]);
 
   if (!weatherData || weatherData.cod !== '200' || !weatherData.list || weatherData.list.length === 0) {
     return null;
@@ -18,10 +17,11 @@ const WeatherDisplay = ({ weatherData, city }) => {
   const temperatureKelvin = currentWeather.main.temp;
   const pressure = currentWeather.main.pressure;
   const windSpeed = currentWeather.wind.speed;
-  const temperatureCelsius = temperatureKelvin - 273.15;
+  const temperatureCelsius = (temperatureKelvin - 273.15).toFixed(1);
   const pressureMmHg = (pressure * 0.750061561303).toFixed(2);
 
-  const displayCity = city || 'этом месте';
+  // Используйте значение по умолчанию, если не удалось получить город
+  const displayCity = city || (geoData && geoData.cityName) || 'этом месте';
 
   return (
     <div className="weather-display">
@@ -30,7 +30,7 @@ const WeatherDisplay = ({ weatherData, city }) => {
 
       <div className="weather-info">
         <div className="temperature-info">
-          <p>Температура: {temperatureCelsius.toFixed(1)} °C</p>
+          <p>Температура: {temperatureCelsius} °C</p>
         </div>
 
         <div className="pressure-info">
