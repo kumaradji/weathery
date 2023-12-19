@@ -3,8 +3,6 @@ import { useWeatherApi } from './weatherApiHook';
 import WeatherDisplay from './WeatherDisplay';
 import Search from './Search';
 import "../styles/Main.css";
-import GeoWeatherLoader from "./GeoWeatherLoader";
-import CurrentLocationWeather from "./CurrentLocationWeather";
 import GeoLocationInfo from './GeoLocationInfo';
 import useGeoLocation from './useGeoLocation'; // Импортируем хук useGeoLocation
 
@@ -59,15 +57,12 @@ function HomePage() {
         geoData={{ cityName: city }}
       />
 
-
-      {/* Проверьте, что geoCoords передаются в WeatherDisplay как geoData */}
       {data ? (
         <WeatherDisplay weatherData={data} city={city} geoData={geoCoords} />
       ) : (
         <p>No weather data available</p>
       )}
 
-      {/* Выводим информацию о геолокации с использованием нового компонента */}
       <GeoLocationInfo loaded={geoLoaded} coords={geoCoords} />
     </>
   );

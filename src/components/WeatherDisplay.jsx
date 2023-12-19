@@ -18,12 +18,9 @@ const WeatherDisplay = ({ weatherData, city, geoData }) => {
   const temperatureCelsius = (temperatureKelvin - 273.15).toFixed(1);
   const pressureMmHg = (pressure * 0.750061561303).toFixed(2);
 
-
-  const displayCity = city || (geoData && geoData.cityName) || 'этом месте';
-
   return (
     <div className="weather-display">
-      <h2>Текущая погода в городе {displayCity}</h2>
+      <h2>Текущая погода в городе {city}</h2>
       <img className="weather-icon" src={iconUrl} alt="Weather Icon" />
 
       <div className="weather-info">
