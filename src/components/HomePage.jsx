@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useWeatherApi } from './weatherApiHook';
+import { useWeatherApi } from '../hooks/weatherApiHook';
 import WeatherDisplay from './WeatherDisplay';
 import Search from './Search';
 import "../styles/Main.css";
 import GeoLocationInfo from './GeoLocationInfo';
-import useGeoLocation from './useGeoLocation';
+import useGeoLocation from '../hooks/useGeoLocation';
 
 function HomePage() {
   const [city, setCity] = useState('');

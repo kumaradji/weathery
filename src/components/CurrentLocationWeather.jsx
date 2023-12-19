@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import WeatherDisplay from './WeatherDisplay';
-import useGeoLocation from './useGeoLocation';
+import useGeoLocation from '../hooks/useGeoLocation';
 
 function CurrentLocationWeather() {
   const geoLocation = useGeoLocation(); // Получаем координаты из кастомного хука

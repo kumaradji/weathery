@@ -1,4 +1,5 @@
 // GeoWeatherLoader.jsx
+
 import { useEffect } from 'react';
 
 const apiKey = 'ffd35bef4b2502a86a950620325c3764';
@@ -13,7 +14,7 @@ const GeoWeatherLoader = (props) => {
           throw new Error('Invalid location data');
         }
 
-        const { coords } = location; // Добавлено: деструктурируем объект location
+        const { coords } = location;
         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lng}&appid=${apiKey}`;
         const response = await fetch(url);
 
