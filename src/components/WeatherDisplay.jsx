@@ -2,6 +2,12 @@
 
 import React, { useEffect } from 'react';
 import "../styles/WeatherDisplay.css";
+import {
+  getIconUrl,
+  getTemperatureC,
+  getPressure,
+  getWindSpeed
+} from '../utils/weatherUtils';
 
 const WeatherDisplay = ({ weatherData, city, geoData }) => {
   useEffect(() => {
@@ -12,13 +18,10 @@ const WeatherDisplay = ({ weatherData, city, geoData }) => {
   }
 
   const currentWeather = weatherData.list[0];
-  const iconCode = currentWeather.weather[0].icon;
-  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-  const temperatureKelvin = currentWeather.main.temp;
-  const pressure = currentWeather.main.pressure;
-  const windSpeed = currentWeather.wind.speed;
-  const temperatureCelsius = (temperatureKelvin - 273.15).toFixed(1);
-  const pressureMmHg = (pressure * 0.750061561303).toFixed(2);
+  const iconUrl = getIconUrl(currentWeather);
+  const temperatureCelsius = getTemperatureC(currentWeather);
+  const pressureMmHg = getPressure(currentWeather);
+  const windSpeed = getWindSpeed(currentWeather);
 
   return (
     <div className="weather-display">

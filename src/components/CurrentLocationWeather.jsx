@@ -1,9 +1,11 @@
+// CurrentLocationWeather.jsx
+
 import React, { useState, useEffect } from 'react';
 import WeatherDisplay from './WeatherDisplay';
 import useGeoLocation from '../hooks/useGeoLocation';
 
 function CurrentLocationWeather() {
-  const geoLocation = useGeoLocation(); // Получаем координаты из кастомного хука
+  const geoLocation = useGeoLocation();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
@@ -19,10 +21,8 @@ function CurrentLocationWeather() {
         }
 
         const { lat, lng } = geoLocation.coords;
-        const apiKey = 'ffd35bef4b2502a86a950620325c3764'; // Замените на свой ключ
-
+        const apiKey = 'ffd35bef4b2502a86a950620325c3764';
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}`;
-
         const response = await fetch(apiUrl);
 
         if (!response.ok) {

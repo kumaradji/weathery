@@ -1,3 +1,5 @@
+// HomePage.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useWeatherApi } from '../hooks/weatherApiHook';
 import WeatherDisplay from './WeatherDisplay';
@@ -10,20 +12,11 @@ function HomePage() {
   const [city, setCity] = useState('');
   const { data, error } = useWeatherApi(city);
   const { loaded: geoLoaded, coords: geoCoords } = useGeoLocation();
-  const [loadingGeo, setLoadingGeo] = useState(false);
 
   useEffect(() => {
-    setLoadingGeo(!geoLoaded);
-  }, [geoLoaded]);
-
-  // Добавим состояния для управления данными и загрузкой
-  const [weatherData, setWeatherData] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const handleWeatherLoaded = (weatherData) => {
-    setWeatherData(weatherData);
-    setLoading(false); // Устанавливаем loading в false после загрузки данных о погоде
-  };
+    // Вы можете добавить логику обработки данных с использованием data и geoCoords,
+    // например, обновление состояния, сохранение в локальном хранилище и т.д.
+  }, [data, geoCoords]);
 
   const handleSearch = (searchCity) => {
     setCity(searchCity);
@@ -45,16 +38,10 @@ function HomePage() {
       />
 
       <WeatherDisplay
-        weatherData={weatherData}
+        weatherData={data}
         city={city}
-        geoData={{ cityName: city }}
+        geoData={geoCoords}
       />
-
-      {data ? (
-        <WeatherDisplay weatherData={data} city={city} geoData={geoCoords} />
-      ) : (
-        <p>No weather data available</p>
-      )}
 
       <GeoLocationInfo loaded={geoLoaded} coords={geoCoords} />
     </>
