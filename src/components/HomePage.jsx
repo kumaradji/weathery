@@ -23,28 +23,31 @@ function HomePage() {
   };
 
   return (
-    <>
-      <input
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        placeholder="Введите город или выберете из списка"
-      />
+    <div className="weather-container">
+      <div className="weather-display">
+        <input
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          placeholder="Введите город или выберете из списка"
+        />
 
-      <Search
-        onSearch={handleSearch}
-        suggestedCities={['Москва', 'Сочи', 'Bern', 'Oslo', 'London', 'Tokyo', 'Томск']}
-        onSelectCity={setCity}
-        showPlaceholder={true}
-      />
+        <Search
+          onSearch={handleSearch}
+          suggestedCities={['Москва', 'Сочи', 'Bern', 'Oslo', 'London', 'Tokyo', 'Томск']}
+          onSelectCity={setCity}
+          showPlaceholder={true}
+        />
 
-      <WeatherDisplay
-        weatherData={data}
-        city={city}
-        geoData={geoCoords}
-      />
+        <WeatherDisplay
+          weatherData={data}
+          city={city}
+        />
+      </div>
 
-      <GeoLocationInfo loaded={geoLoaded} coords={geoCoords} />
-    </>
+      <div className="geolocation-info">
+        <GeoLocationInfo loaded={geoLoaded} coords={geoCoords} />
+      </div>
+    </div>
   );
 }
 

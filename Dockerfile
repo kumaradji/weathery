@@ -8,16 +8,18 @@ COPY package*.json ./
 # Устанавливаем зависимости
 RUN npm install
 
-# Копируем все файлы из текущего каталога в /app внутри контейнера
+# Копируем только необходимые файлы для билда
 COPY . .
 
-ENV REACT_APP_OPENWEATHER_API_KEY=ffd35bef4b2502a86a950620325c3764
+RUN ls -al
+RUN pwd
+RUN npm run build 2>&1 | tee build.log
 
-# Билдим приложение в production режиме
-RUN npm run build
+# Устанавливаем serve
+RUN npm install -g serve
 
-# Используем порт по умолчанию для webpack dev server
-EXPOSE 8080
+# Используем порт по умолчанию для serve
+EXPOSE 5000
 
-# Запускаем скрипт dev, который запускает webpack dev server
-CMD ["npm", "run", "dev"]
+# Запускаем serve для обслуживания статических файлов
+CMD ["serve", "-s", "build"]

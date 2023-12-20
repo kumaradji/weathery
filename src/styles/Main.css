@@ -13,6 +13,18 @@ body {
     padding: 8px;
 }
 
+.weather-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.weather-display {
+    /* Стили для блока с текущей погодой в городе */
+}
+
+.geolocation-info {
+    /* Стили для блока с погодой по местоположению */
+}
 
 @media (max-width: 1200px) {
     .container {
@@ -26,6 +38,10 @@ body {
 @media (max-width: 1000px) {
     .container {
         max-width: 768px;
+    }
+    .weather-container {
+        display: grid;
+        justify-content: space-between;
     }
 }
 
