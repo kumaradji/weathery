@@ -19,11 +19,39 @@ body {
 }
 
 .weather-display {
-    /* Стили для блока с текущей погодой в городе */
 }
 
+
 .geolocation-info {
-    /* Стили для блока с погодой по местоположению */
+    font-size: large;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.input-wrapper input::placeholder {
+    color: #aaa;
+}
+
+.input-wrapper input:focus::placeholder {
+    color: #555;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 @media (max-width: 1200px) {
@@ -48,5 +76,9 @@ body {
 @media (max-width: 768px) {
     .container {
         max-width: 480px;
+    }
+    .header-time {
+        text-align: right;
+        margin-right: 20px;
     }
 }

@@ -14,8 +14,6 @@ function HomePage() {
   const { loaded: geoLoaded, coords: geoCoords } = useGeoLocation();
 
   useEffect(() => {
-    // Вы можете добавить логику обработки данных с использованием data и geoCoords,
-    // например, обновление состояния, сохранение в локальном хранилище и т.д.
   }, [data, geoCoords]);
 
   const handleSearch = (searchCity) => {
@@ -25,15 +23,17 @@ function HomePage() {
   return (
     <div className="weather-container">
       <div className="weather-display">
-        <input
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          placeholder="Введите город или выберете из списка"
-        />
+        <div className="input-wrapper">
+          <input
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="Введите город"
+          />
+        </div>
 
         <Search
           onSearch={handleSearch}
-          suggestedCities={['Москва', 'Сочи', 'Bern', 'Oslo', 'London', 'Tokyo', 'Томск']}
+          suggestedCities={['Москва', 'Санкт-Петербург', 'Томск', 'Магадан', 'Сочи', 'Bern', 'Oslo', 'London', 'Tokyo']}
           onSelectCity={setCity}
           showPlaceholder={true}
         />

@@ -10,18 +10,30 @@
 .header-title {
     flex-grow: 1;
     text-align: left;
-    margin-left: 30px;
+    margin-left: 120px;
 }
 
+.header-time {
+    text-align: right;
+    margin-right: 110px; /* Уменьшите отступ справа для ближе к центру */
+}
 
 @media (max-width: 1000px) {
     .header {
         font-size: 1.2rem;
+    }
+    .header-time {
+        text-align: right;
+        margin-right: 70px; /* Уменьшите отступ справа для ближе к центру */
     }
 }
 
 @media (max-width: 768px) {
     .header {
         font-size: 1rem;
+    }
+    .header-time {
+        text-align: right;
+        margin-right: 30px; /* Уменьшите отступ справа для ближе к центру */
     }
 }
